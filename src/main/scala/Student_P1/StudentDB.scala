@@ -31,28 +31,34 @@ class StudentDB{
   }
 
   def  getAll(){
+    println("***********************Student Detail************************")
     val cmd ="Select Student_ID,First_Name,Last_Name,Contact_Number from student"
+    //val cmd ="Select Student_ID,First_Name,Last_Name,Contact_Number from student ORDER BY student_ID $Student_ID";
     dataConnect()
     var getResult:ResultSet=executeQuery(cmd);
+    println("Student_Id\t\t"+"FirstName\t\t\t\t"+"Last_Name\t\t\t\t"+"Contact_Number\t\t")
     while (getResult.next()) {
-               var Student_ID=student.getId()
+             /* var Student_ID=student.getId()
                student.setId(Student_ID)
-               var  First_Name=student.getName()
+              var First_Name=student.getName()
                student.setName(First_Name)
                var Last_Name=student.getLastName()
                student.setLastName(Last_Name)
                var Contact_Number=student.getContact()
-               student.setContact(Contact_Number)
-               println(" Student_ID:  " +getResult.getString("Student_ID"),
-                       " First_Name:  " +getResult.getString("First_Name"),
-                       " Last_Name:  " +getResult.getString("Last_Name"),
-                       " Contact_Number:  " +getResult.getString("Contact_Number"));
+               student.setContact(Contact_Number)*/
+               println( getResult.getString("Student_ID")+"\t\t\t\t\t"+
+                       getResult.getString("First_Name")+"\t\t\t\t"+
+                       getResult.getString("Last_Name")+"\t\t\t\t\t"+
+                       getResult.getString("Contact_Number"))+"\t\t\t";
+
     }
   }
 
   def addStudent(): Unit={
+    println("***********************Insert Student************************")
     //println("Add Student")
     try {
+
         println("Enter studentID")
         var Student_ID = scala.io.StdIn.readInt()
         println("Enter First_Name")
@@ -79,6 +85,7 @@ class StudentDB{
   }
 
   def updateStudent(): Unit={
+    println("***********************Update Student************************")
     //println("Update")
     var db=dataConnect()
     try {
@@ -106,6 +113,7 @@ class StudentDB{
    }
 
   def deleteStudent(): Unit ={
+    println("***********************Delete Student************************")
    // println("Delete")
     var db=dataConnect()
     println("Enter studentID You Want To Delete")
@@ -125,6 +133,7 @@ class StudentDB{
 
   def getById():Unit= {
     //println("GetByID")
+    println("***********************Select Student By ID************************")
     var db=dataConnect()
     println("Enter studentID For Record Check")
     var Student_ID = scala.io.StdIn.readInt()
